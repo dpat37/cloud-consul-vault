@@ -1,0 +1,48 @@
+
+spring:
+  application:
+    name: testApp
+  cloud:
+    consul:
+      host: consul-cluster.consul.80793245-0cdd-4bec-8171-5d9c4aaa9f2c.aws.hashicorp.cloud
+      port: 443
+      config:
+        enabled: true
+        prefixes: config
+        #        acl-token: ${spring.cloud.consul.token}
+        watch:
+          enabled: true
+          delay: 1000
+        fail-fast: false
+        default-context: configurations
+      scheme: https
+      enabled: true
+    vault:
+      consul:
+        enabled: true
+        role: my-role
+        backend: consul
+        token-property: spring.cloud.consul.token
+      config:
+        lifecycle:
+          enabled: true
+          min-renewal: 10s
+          expiry-threshold: 1m
+          lease-endpoints: sysleases
+      host: vault-cluster.vault.80793245-0cdd-4bec-8171-5d9c4aaa9f2c.aws.hashicorp.cloud
+      port: 8200
+      scheme: https
+      connection-timeout: 5000
+      read-timeout: 15000
+      authentication: token
+      token: s.geJ0YLJFzfafpATOy0TQgHMe.KtdZA
+      namespace: admin
+logging:
+  level:
+    org:
+      springframework:
+        web:
+          client: DEBUG
+        cloud: DEBUG
+    com:
+      ecwid: DEBUG

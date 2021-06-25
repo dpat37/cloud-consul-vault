@@ -1,0 +1,13 @@
+
+spring:
+  application:
+    name: testApp
+#  config:
+#    import: optional:consul:/testApp
+#  cloud:
+
+logging:
+  level:
+    org:
+      springframework:
+        cloud: DEBUG
